@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ImageSourcePropType,
+} from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Colors from '@/constants/Colors';
 import { useAssets } from 'expo-asset';
@@ -26,7 +33,13 @@ const CategoryBoxes = () => {
     <View style={styles.container}>
       {categories.map((category) => (
         <TouchableOpacity key={category.id} style={styles.button}>
-          {assets ? <Image source={assets[+category.id - 1]} /> : null}
+          {assets ? (
+            <Image
+              source={
+                assets[+category.id - 1] as ImageSourcePropType | undefined
+              }
+            />
+          ) : null}
           <Text style={styles.label}>{category.name}</Text>
         </TouchableOpacity>
       ))}
@@ -39,7 +52,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     marginTop: 20,
-    marginHorizontal: 10,
   },
   button: {
     width: 100,
