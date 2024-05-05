@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 const events = [
   {
@@ -81,26 +82,30 @@ const RecommandCategory = () => {
           keyExtractor={(item) => item.id}
           numColumns={2}
           renderItem={({ item, index }) => (
-            <TouchableOpacity style={styles.card}>
-              <Image source={item.image} style={styles.image} />
-              <View style={styles.cardSection}>
-                <View style={styles.cardTypeSection}>
-                  <Text style={styles.cardText}>연극</Text>
-                  <Text style={styles.cardText}>|</Text>
-                  <Text style={styles.cardText}>전연령</Text>
+            <Link href={`/detail/${item.id}`} asChild>
+              <TouchableOpacity style={styles.card}>
+                <Image source={item.image} style={styles.image} />
+                <View style={styles.cardSection}>
+                  <View style={styles.cardTypeSection}>
+                    <Text style={styles.cardText}>연극</Text>
+                    <Text style={styles.cardText}>|</Text>
+                    <Text style={styles.cardText}>전연령</Text>
+                  </View>
+                  <Text style={styles.cardTitle}>{item.title}</Text>
+                  <Text style={styles.date}>{item.date}</Text>
                 </View>
-                <Text style={styles.cardTitle}>{item.title}</Text>
-                <Text style={styles.date}>{item.date}</Text>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Link>
           )}
         />
       </View>
       <View>
-        <TouchableOpacity style={styles.bigButton}>
-          <Text>{selectedCategory} 모아보기</Text>
-          <MaterialIcons name='arrow-forward-ios' size={16} color='#585C66' />
-        </TouchableOpacity>
+        <Link href={'/festival'} asChild>
+          <TouchableOpacity style={styles.bigButton}>
+            <Text>{selectedCategory} 모아보기</Text>
+            <MaterialIcons name='arrow-forward-ios' size={16} color='#585C66' />
+          </TouchableOpacity>
+        </Link>
       </View>
     </View>
   );
@@ -109,7 +114,6 @@ const RecommandCategory = () => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
-    paddingHorizontal: 10,
   },
   header: {
     fontSize: 20,
@@ -121,7 +125,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoryButton: {
-    // backgroundColor: Colors.lightGray,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: Colors.lightGray,
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     borderColor: 'transparent',
-    backgroundColor: Colors.organge,
+    backgroundColor: Colors.orange,
     color: 'white',
   },
   categoryText: {

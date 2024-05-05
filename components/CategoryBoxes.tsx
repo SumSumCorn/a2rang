@@ -10,6 +10,7 @@ import {
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Colors from '@/constants/Colors';
 import { useAssets } from 'expo-asset';
+import { Link } from 'expo-router';
 
 const categories = [
   { id: '1', name: '전시·미술', icon: '@/assets/images/icon/art' },
@@ -32,16 +33,18 @@ const CategoryBoxes = () => {
   return (
     <View style={styles.container}>
       {categories.map((category) => (
-        <TouchableOpacity key={category.id} style={styles.button}>
-          {assets ? (
-            <Image
-              source={
-                assets[+category.id - 1] as ImageSourcePropType | undefined
-              }
-            />
-          ) : null}
-          <Text style={styles.label}>{category.name}</Text>
-        </TouchableOpacity>
+        <Link href={'/festival'} asChild>
+          <TouchableOpacity key={category.id} style={styles.button}>
+            {assets ? (
+              <Image
+                source={
+                  assets[+category.id - 1] as ImageSourcePropType | undefined
+                }
+              />
+            ) : null}
+            <Text style={styles.label}>{category.name}</Text>
+          </TouchableOpacity>
+        </Link>
       ))}
     </View>
   );

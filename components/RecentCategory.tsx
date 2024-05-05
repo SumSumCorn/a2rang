@@ -65,7 +65,6 @@ const RecentCategory = () => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
-    paddingHorizontal: 10,
     marginBottom: 10,
   },
   header: {
@@ -85,13 +84,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   selected: {
-    backgroundColor: Colors.organge,
+    backgroundColor: Colors.orange,
     opacity: 8,
   },
   categoryText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: Colors.organge,
+    color: Colors.orange,
   },
   card: {
     width: 140,
