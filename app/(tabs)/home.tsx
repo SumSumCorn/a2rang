@@ -6,7 +6,7 @@ import { Text, View } from '@/components/Themed';
 export default function Page() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Tab One 안녕하세요 아이랑입니다</Text>
       <View
         style={styles.separator}
         lightColor='#eee'
