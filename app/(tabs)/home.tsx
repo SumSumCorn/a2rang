@@ -24,7 +24,7 @@ export default function Page() {
   };
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView nestedScrollEnabled={true}>
         {/* 검색 컴포넌트 */}
         <View style={styles.searchSection}>
           <TextInput
