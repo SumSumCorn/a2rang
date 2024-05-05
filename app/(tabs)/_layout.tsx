@@ -2,8 +2,16 @@ import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
-
 import Colors from '@/constants/Colors';
+
+import { Ionicons } from '@expo/vector-icons';
+import HomeLogo from '@/assets/icons/Basic/icon_home.svg';
+import Bookmark from '@/assets/icons/Basic/icon_bookmark.svg';
+import MyPage from '@/assets/icons/Basic/icon_mypage.svg';
+import HomeLogoActive from '@/assets/icons/Active/icon_home.svg';
+import BookmarkActive from '@/assets/icons/Active/icon_bookmark.svg';
+import MyPageActive from '@/assets/icons/Active/icon_mypage.svg';
+
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 
@@ -21,7 +29,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].orange,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
@@ -31,13 +39,15 @@ export default function TabLayout() {
         name='home'
         options={{
           title: '홈',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          tabBarIcon: ({ focused, color }) => {
+            return focused ? <HomeLogoActive /> : <HomeLogo />;
+          },
           headerRight: () => (
             <Link href='/modal' asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name='info-circle'
+                  <Ionicons
+                    name='notifications-outline'
                     size={25}
                     color={Colors[colorScheme ?? 'light'].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
@@ -51,15 +61,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name='mykeyword'
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          title: '관심',
+          tabBarIcon: ({ focused, color }) => {
+            return focused ? <BookmarkActive /> : <Bookmark />;
+          },
         }}
       />
       <Tabs.Screen
         name='mypage'
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          title: '마이페이지',
+          tabBarIcon: ({ focused, color }) =>
+            focused ? <MyPageActive /> : <MyPage />,
         }}
       />
     </Tabs>
