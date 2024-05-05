@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 50,
     paddingHorizontal: 10,
+    marginBottom: 10,
   },
   header: {
     fontSize: 20,
@@ -108,6 +109,8 @@ const styles = StyleSheet.create({
   cardSection: {
     marginTop: 10,
     gap: 7,
+    paddingHorizontal: 5,
+    paddingBottom: 1,
   },
   cardTypeSection: {
     flexDirection: 'row',

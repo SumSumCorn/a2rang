@@ -121,6 +121,8 @@ const styles = StyleSheet.create({
   cardSection: {
     justifyContent: 'center',
     marginTop: 10,
+    paddingHorizontal: 5,
+    paddingBottom: 1,
     gap: 7,
   },
   cardTypeSection: {
