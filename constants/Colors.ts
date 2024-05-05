@@ -5,8 +5,9 @@ const a2rangOrange = '#FF5E3B';
 const lightGray = '#BBBFC7';
 
 export default {
-  organge: a2rangOrange,
+  orange: a2rangOrange,
   lightGray: lightGray,
+  gray: '#3B3F47',
   light: {
     text: '#000',
     background: '#fff',
