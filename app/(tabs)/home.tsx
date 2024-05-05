@@ -1,10 +1,18 @@
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import CategoryBoxes from '@/components/CategoryBoxes';
+import HotCategory from '@/components/HotCategory';
+import RecommandCategory from '@/components/RecommandCategory';
+import RecentCategory from '@/components/RecentCategory';
 
 export default function Page() {
   const [query, setQuery] = useState('');
@@ -16,32 +24,36 @@ export default function Page() {
   };
   return (
     <View style={styles.container}>
-      {/* 검색 컴포넌트 */}
-      <View style={styles.searchSection}>
-        <TextInput
-          style={styles.input}
-          value={query}
-          onChangeText={handleSearch}
-          placeholder='검색어를 입력하세요'
-          placeholderTextColor='#999'
+      <ScrollView>
+        {/* 검색 컴포넌트 */}
+        <View style={styles.searchSection}>
+          <TextInput
+            style={styles.input}
+            value={query}
+            onChangeText={handleSearch}
+            placeholder='검색어를 입력하세요'
+            placeholderTextColor='#999'
+          />
+          <TouchableOpacity onPress={() => handleSearch(query)}>
+            <AntDesign name='search1' size={24} color='#999' />
+          </TouchableOpacity>
+        </View>
+        {/* box컴포넌트 */}
+        <CategoryBoxes />
+        {/* 핫한행사컴포넌트 */}
+        <HotCategory />
+        {/* 아이랑추천픽컴포넌트 */}
+        <RecommandCategory />
+        {/* 최근등록된행사 컴포넌트 */}
+        <RecentCategory />
+        {/* <Text style={styles.title}>Tab One 안녕하세요 아이랑입니다</Text>
+        <View
+          style={styles.separator}
+          lightColor='#eee'
+          darkColor='rgba(255,255,255,0.1)'
         />
-        <TouchableOpacity onPress={() => handleSearch(query)}>
-          <AntDesign name='search1' size={24} color='#999' />
-          {/* <Icon name="search" size={20} color="#999" style={styles.searchIcon} /> */}
-        </TouchableOpacity>
-      </View>
-      {/* box컴포넌트 */}
-      <CategoryBoxes />
-      {/* 핫한행사컴포넌트 */}
-      {/* 아이랑추천픽컴포넌트 */}
-      {/* 최근등록된행사 컴포넌트 */}
-      <Text style={styles.title}>Tab One 안녕하세요 아이랑입니다</Text>
-      <View
-        style={styles.separator}
-        lightColor='#eee'
-        darkColor='rgba(255,255,255,0.1)'
-      />
-      <EditScreenInfo path='app/(tabs)/index.tsx' />
+        <EditScreenInfo path='app/(tabs)/index.tsx' /> */}
+      </ScrollView>
     </View>
   );
 }
