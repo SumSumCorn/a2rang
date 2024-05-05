@@ -1,4 +1,5 @@
 import Colors from '@/constants/Colors';
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -44,18 +45,20 @@ const RecentCategory = () => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-            <View style={styles.cardSection}>
-              <View style={styles.cardTypeSection}>
-                <Text style={styles.cardText}>연극</Text>
-                <Text style={styles.cardText}>|</Text>
-                <Text style={styles.cardText}>전연령</Text>
+          <Link href={`/detail/${item.id}`} asChild>
+            <TouchableOpacity style={styles.card}>
+              <Image source={item.image} style={styles.image} />
+              <View style={styles.cardSection}>
+                <View style={styles.cardTypeSection}>
+                  <Text style={styles.cardText}>연극</Text>
+                  <Text style={styles.cardText}>|</Text>
+                  <Text style={styles.cardText}>전연령</Text>
+                </View>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.date}>{item.date}</Text>
               </View>
-              <Text style={styles.cardTitle}>{item.title}</Text>
-              <Text style={styles.date}>{item.date}</Text>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </Link>
         )}
       />
     </View>

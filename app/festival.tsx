@@ -14,6 +14,7 @@ import {
   samplecategories as categories,
   sampleEvents as events,
 } from '@/utils/data';
+import { Link } from 'expo-router';
 
 const FestivalPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
@@ -69,22 +70,28 @@ const FestivalPage = () => {
           data={events}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.card}>
-              <Image source={item.image} style={styles.image} />
-              <View style={styles.details}>
-                <View style={{ flexDirection: 'row', gap: 6 }}>
-                  <View style={[styles.badge, { backgroundColor: '#F2F4F7' }]}>
-                    <Text>{item.place}</Text>
+            <Link href={`/detail/${item.id}`} asChild>
+              <TouchableOpacity style={styles.card}>
+                <Image source={item.image} style={styles.image} />
+                <View style={styles.details}>
+                  <View style={{ flexDirection: 'row', gap: 6 }}>
+                    <View
+                      style={[styles.badge, { backgroundColor: '#F2F4F7' }]}
+                    >
+                      <Text>{item.place}</Text>
+                    </View>
+                    <View
+                      style={[styles.badge, { backgroundColor: '#FFF4E6' }]}
+                    >
+                      <Text>{item.target}</Text>
+                    </View>
                   </View>
-                  <View style={[styles.badge, { backgroundColor: '#FFF4E6' }]}>
-                    <Text>{item.target}</Text>
-                  </View>
+                  <Text style={styles.contentTitle}>{item.title}</Text>
+                  <Text style={styles.description}>{item.org}</Text>
+                  <Text style={styles.date}>{item.date}</Text>
                 </View>
-                <Text style={styles.contentTitle}>{item.title}</Text>
-                <Text style={styles.description}>{item.org}</Text>
-                <Text style={styles.date}>{item.date}</Text>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Link>
           )}
         />
       </View>

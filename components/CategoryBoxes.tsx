@@ -33,8 +33,8 @@ const CategoryBoxes = () => {
   return (
     <View style={styles.container}>
       {categories.map((category) => (
-        <Link href={'/festival'} asChild>
-          <TouchableOpacity key={category.id} style={styles.button}>
+        <Link href={'/festival'} key={category.id} asChild>
+          <TouchableOpacity style={styles.button}>
             {assets ? (
               <Image
                 source={
