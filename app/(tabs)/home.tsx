@@ -46,13 +46,6 @@ export default function Page() {
         <RecommandCategory />
         {/* 최근등록된행사 컴포넌트 */}
         <RecentCategory />
-        {/* <Text style={styles.title}>Tab One 안녕하세요 아이랑입니다</Text>
-        <View
-          style={styles.separator}
-          lightColor='#eee'
-          darkColor='rgba(255,255,255,0.1)'
-        />
-        <EditScreenInfo path='app/(tabs)/index.tsx' /> */}
       </ScrollView>
     </View>
   );
@@ -64,6 +57,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // justifyContent: 'center',
     paddingHorizontal: 20,
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 20,
