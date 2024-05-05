@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
     // width: 112,
     // height: 128,
     width: '100%',
-    height: 200,
+    height: 166,
+    borderRadius: 6,
   },
   cardTitle: {
     fontWeight: 'bold',

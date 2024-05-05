@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const events = [
   {
@@ -72,27 +73,35 @@ const RecommandCategory = () => {
           ))}
         </ScrollView>
       </View>
-      <FlatList
-        data={events}
-        // horizontal={true}
-        // showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-            <View style={styles.cardSection}>
-              <View style={styles.cardTypeSection}>
-                <Text style={styles.cardText}>연극</Text>
-                <Text style={styles.cardText}>|</Text>
-                <Text style={styles.cardText}>전연령</Text>
+      <View style={styles.cardContainer}>
+        <FlatList
+          data={events}
+          // horizontal={true}
+          // showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity style={styles.card}>
+              <Image source={item.image} style={styles.image} />
+              <View style={styles.cardSection}>
+                <View style={styles.cardTypeSection}>
+                  <Text style={styles.cardText}>연극</Text>
+                  <Text style={styles.cardText}>|</Text>
+                  <Text style={styles.cardText}>전연령</Text>
+                </View>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.date}>{item.date}</Text>
               </View>
-              <Text style={styles.cardTitle}>{item.title}</Text>
-              <Text style={styles.date}>{item.date}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+      <View>
+        <TouchableOpacity style={styles.bigButton}>
+          <Text>{selectedCategory} 모아보기</Text>
+          <MaterialIcons name='arrow-forward-ios' size={16} color='#585C66' />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -165,6 +174,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 128,
+    borderRadius: 6,
     // width: '100%',
     // height: 200,
   },
@@ -174,6 +184,22 @@ const styles = StyleSheet.create({
   },
   date: {
     color: '#777',
+  },
+  cardContainer: {
+    marginBottom: 20,
+  },
+  bigButton: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: Colors.lightGray,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 16,
+  },
+  bigButtonText: {
+    fontSize: 16,
   },
 });
 
