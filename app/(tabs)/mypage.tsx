@@ -1,4 +1,6 @@
+import Colors from '@/constants/Colors';
 import { sampleEvents } from '@/utils/data';
+import { Entypo } from '@expo/vector-icons';
 import React from 'react';
 import {
   StyleSheet,
@@ -20,42 +22,54 @@ const MenuOptions = [
 
 const MyPage = () => {
   return (
-    <ScrollView style={styles.container} nestedScrollEnabled={true}>
-      <View style={styles.nameContainer}>
-        <Text style={styles.name}>유저 이름</Text>
-      </View>
-      <View style={styles.myPlaceContainer}>
-        <Text style={styles.myPlaceTitle}>내 관심지역</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text>성균</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>동대문구</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>장서</Text>
-          </TouchableOpacity>
+    <View style={styles.container}>
+      <ScrollView nestedScrollEnabled={true}>
+        <View style={styles.nameContainer}>
+          <Text style={styles.name}>유저 이름</Text>
         </View>
-      </View>
-
-      <FlatList
-        horizontal
-        data={sampleEvents}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-            <Text style={styles.eventTitle}>{item.title}</Text>
+        <View style={styles.myPlaceContainer}>
+          <Text style={styles.myPlaceTitle}>내 관심지역</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>성북구</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>동대문구</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>강서구</Text>
+            </TouchableOpacity>
           </View>
-        )}
-      />
-      {MenuOptions.map((option) => (
-        <TouchableOpacity key={option.id} style={styles.menuItem}>
-          <Text style={styles.menuText}>{option.title}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+        </View>
+        <View
+          style={{
+            paddingVertical: 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={styles.subTitle}>최근 본 행사</Text>
+          <Entypo name='chevron-right' size={20} color={Colors.lightGray} />
+        </View>
+        <FlatList
+          horizontal
+          data={sampleEvents}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Image source={item.image} style={styles.image} />
+              <Text style={styles.eventTitle}>{item.title}</Text>
+            </View>
+          )}
+        />
+        {MenuOptions.map((option) => (
+          <TouchableOpacity key={option.id} style={styles.menuItem}>
+            <Text style={styles.menuText}>{option.title}</Text>
+            <Entypo name='chevron-right' size={20} color={Colors.lightGray} />
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
@@ -63,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
+    backgroundColor: 'white',
   },
   nameContainer: {
     justifyContent: 'center',
@@ -79,6 +94,9 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#F7F9FC',
+    borderRadius: 12,
+    marginBottom: 24,
   },
   myPlaceTitle: {
     fontSize: 16,
@@ -90,29 +108,44 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
   },
+  subTitle: {
+    fontSize: 18,
+  },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
+    gap: 6,
+    justifyContent: 'center',
   },
   button: {
     padding: 10,
-    backgroundColor: '#ddd',
-    borderRadius: 10,
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: Colors.orange,
   },
   card: {
-    width: 150,
-    marginRight: 10,
+    // width: 150,
+    marginRight: 12,
+    gap: 12,
+    marginVertical: 12,
   },
   image: {
-    width: '100%',
-    height: 150,
-    borderRadius: 10,
+    width: 140,
+    height: 166,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.lightGray,
   },
   eventTitle: {
     textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   menuItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 15,
     marginTop: 10,
     backgroundColor: '#f8f8f8',

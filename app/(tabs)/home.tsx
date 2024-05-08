@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   TextInput,
@@ -14,6 +15,34 @@ import HotCategory from '@/components/HotCategory';
 import RecommandCategory from '@/components/RecommandCategory';
 import RecentCategory from '@/components/RecentCategory';
 
+// 상단 헤더 섹션을 렌더링할 컴포넌트
+const ListHeader = ({
+  query,
+  handleSearch,
+}: {
+  query: string;
+  handleSearch: (text: string) => void;
+}) => (
+  <View style={{ backgroundColor: 'white' }}>
+    <View style={styles.searchSection}>
+      <TextInput
+        style={styles.input}
+        value={query}
+        onChangeText={handleSearch}
+        placeholder='검색어를 입력하세요'
+        placeholderTextColor='#999'
+      />
+      <TouchableOpacity onPress={() => handleSearch(query)}>
+        <AntDesign name='search1' size={24} color='#999' />
+      </TouchableOpacity>
+    </View>
+    <CategoryBoxes />
+    <HotCategory />
+    <RecommandCategory />
+    <RecentCategory />
+  </View>
+);
+
 export default function Page() {
   const [query, setQuery] = useState('');
   const handleSearch = (text: string) => {
@@ -22,31 +51,17 @@ export default function Page() {
     setQuery(text);
     // setData(filteredData);
   };
+
   return (
     <View style={styles.container}>
-      <ScrollView nestedScrollEnabled={true}>
-        {/* 검색 컴포넌트 */}
-        <View style={styles.searchSection}>
-          <TextInput
-            style={styles.input}
-            value={query}
-            onChangeText={handleSearch}
-            placeholder='검색어를 입력하세요'
-            placeholderTextColor='#999'
-          />
-          <TouchableOpacity onPress={() => handleSearch(query)}>
-            <AntDesign name='search1' size={24} color='#999' />
-          </TouchableOpacity>
-        </View>
-        {/* box컴포넌트 */}
-        <CategoryBoxes />
-        {/* 핫한행사컴포넌트 */}
-        <HotCategory />
-        {/* 아이랑추천픽컴포넌트 */}
-        <RecommandCategory />
-        {/* 최근등록된행사 컴포넌트 */}
-        <RecentCategory />
-      </ScrollView>
+      <FlatList
+        ListHeaderComponent={
+          <ListHeader query={query} handleSearch={handleSearch} />
+        }
+        data={[]} // 여기서는 실제 리스트 데이터가 없다면 빈 배열을 전달
+        renderItem={null} // 데이터가 없으므로 renderItem은 필요 없음
+        keyExtractor={() => 'key'} // 데이터가 없으므로 키 추출 함수는 간단히 처리
+      />
     </View>
   );
 }

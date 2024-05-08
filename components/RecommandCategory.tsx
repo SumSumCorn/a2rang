@@ -50,7 +50,11 @@ const RecommandCategory = () => {
     <View style={styles.container}>
       <Text style={styles.header}>아이랑의 추천 Pick!</Text>
       <View style={styles.categoryContainer}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
           {categories.map((category) => (
             <TouchableOpacity
               key={category}

@@ -15,6 +15,7 @@ import MyPageActive from '@/assets/icons/Active/icon_mypage.svg';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -112,6 +113,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-    // {/* </GestureHandlerRootView> */}
+    // </GestureHandlerRootView>
   );
 }
