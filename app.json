@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -20,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.catch22.a2rang"
     },
     "web": {
       "bundler": "metro",
@@ -32,12 +35,22 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/PretendardVariable.ttf"]
+          "fonts": [
+            "./assets/fonts/PretendardVariable.ttf"
+          ]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3f919cb1-1c0e-4b8c-9eba-72210155fa9d"
+      }
     }
   }
 }
